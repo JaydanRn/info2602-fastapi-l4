@@ -9,17 +9,6 @@ from fastapi import status
 
 auth_router = APIRouter(tags=["Authentication"])
 
-from fastapi import APIRouter, HTTPException, Depends
-from sqlmodel import select
-from app.database import SessionDep
-from app.models import *
-from app.auth import encrypt_password, verify_password, create_access_token, AuthDep
-from fastapi.security import OAuth2PasswordRequestForm
-from typing import Annotated
-from fastapi import status
-
-auth_router = APIRouter(tags=["Authentication"])
-
 @auth_router.post("/token")
 async def login_for_access_token(
     form_data: Annotated[OAuth2PasswordRequestForm, Depends()],
