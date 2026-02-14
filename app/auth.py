@@ -48,7 +48,7 @@ async def get_current_user(token: Annotated[str, Depends(oauth2_scheme)], db:Ses
             raise credentials_exception
     except InvalidTokenError:
         raise credentials_exception
-    user = db.exec(select(User).where(User.username == username)).one_or_none()
+    user = db.get(RegularUser, username)
     if user is None:
         raise credentials_exception
     return user
