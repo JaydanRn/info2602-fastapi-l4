@@ -17,10 +17,10 @@ def get_todos(db: SessionDep, user:AuthDep):
 def get_todo_by_id(id :int, db: SessionDep, user: AuthDep):
     todo = db.exec(select(Todo).where(Todo.id == id, Todo.user_id == user.id)).one_or_none()
     if not todo:
-                raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Unauthorized",
-            headers={"WWW-Authenticate": "Bearer"},
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="Unauthorized",
+                headers={"WWW-Authenticate": "Bearer"},
         )
     return todo
 
