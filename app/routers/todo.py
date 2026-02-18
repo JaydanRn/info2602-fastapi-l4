@@ -51,9 +51,9 @@ def update_todo(id: int, new_todo_data: TodoUpdate, user: AuthDep, db: SessionDe
             detail="Unauthorized",
             headers={"WWW-Authenticate": "Bearer"},
         )
-     if new_todo_data.text:
+     if new_todo_data.text is not None:
         todo.text = new_todo_data.text        
-     if new_todo_data.done:
+     if new_todo_data.done is not None:
         todo.done = new_todo_data.done
      try:
         db.add(todo)
