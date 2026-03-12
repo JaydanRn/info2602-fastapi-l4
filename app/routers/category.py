@@ -1,8 +1,8 @@
-from fastapi import APIRouter, HTTPException, Depends
+from fastapi import APIRouter, HTTPException
 from sqlmodel import select
 from app.database import SessionDep
 from app.models import *
-from app.auth import encrypt_password, verify_password, create_access_token, AuthDep
+from app.auth import AuthDep
 from fastapi.security import OAuth2PasswordRequestForm
 from typing import Annotated
 from fastapi import status
